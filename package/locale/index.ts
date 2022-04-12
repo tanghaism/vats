@@ -1,4 +1,7 @@
 import { reactive } from 'vue';
+import ZH from '../locale/lang/zh-cn';
+import EN from '../locale/lang/en';
+import JA from '../locale/lang/ja';
 
 export type Lang = 'zh-cn' | 'en' | 'ja';
 
@@ -11,9 +14,15 @@ export interface ILocale {
   [props: string]: any;
 }
 
+export const langMap: Record<Lang, unknown> = {
+  'zh-cn': ZH,
+  en: EN,
+  ja: JA,
+};
+
 export function initI18n(lang: Lang) {
   return reactive<IVatsLocal>({
-    message: require(`./lang/${lang}.ts`).default,
+    message: langMap[lang],
   });
 }
 

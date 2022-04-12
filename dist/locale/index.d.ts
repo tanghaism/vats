@@ -6,6 +6,7 @@ export interface ILocale {
     locale: Lang;
     [props: string]: any;
 }
+export declare const langMap: Record<Lang, unknown>;
 export declare function initI18n(lang: Lang): {
     message: any;
 };

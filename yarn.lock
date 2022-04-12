@@ -3971,6 +3971,15 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
+"vats@ssh://git@github.com:tanghaism/vats.git":
+  version "0.0.1"
+  resolved "ssh://git@github.com:tanghaism/vats.git#2d5f2fb91c79c60203d6b96c809d348e2031feae"
+  dependencies:
+    ant-design-vue "^3.1.1"
+    cropperjs "^1.5.12"
+    vue "^3.2.31"
+    vue-router "^4.0.14"
+
 vite-plugin-html@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/vite-plugin-html/-/vite-plugin-html-3.2.0.tgz#0d4df9900642a321a139f1c25c05195ba9d0ec79"

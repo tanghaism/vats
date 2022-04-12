@@ -15,16 +15,7 @@ export default defineComponent({
 <script lang="ts" setup>
 import { withDefaults, defineProps, toRefs, provide, watch } from 'vue';
 import { initVatsProvider } from './inject';
-import { initI18n, ILocale } from '../locale';
-import ZH from '../locale/lang/zh-cn';
-import EN from '../locale/lang/en';
-import JA from '../locale/lang/ja';
-
-const langMap: any = {
-  'zh-cn': ZH,
-  en: EN,
-  ja: JA,
-};
+import { initI18n, langMap, ILocale } from '../locale';
 
 interface IProps {
   locale: ILocale;
@@ -47,13 +38,7 @@ provide('vatsLang', vatsLang);
 watch(
   () => locale.value,
   async newVal => {
-    const lang = newVal?.locale ? newVal.locale : 'zh-cn';
-
-    // const message = await import(
-    //   /* webpackInclude: /(zh-cn|ja|en)\.ts/ */ /* webpackChunkName: "vats-locale-[request]" */ `../locale/lang/${lang}.ts`
-    // );
-
-    vatsLang.message = langMap[lang];
+    vatsLang.message = newVal?.locale ? langMap[newVal.locale] : langMap['zh-cn'];
   },
 );
 </script>
