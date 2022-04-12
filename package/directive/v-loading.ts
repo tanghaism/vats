@@ -4,8 +4,9 @@ import { createApp, nextTick, App, ComponentInternalInstance, DirectiveBinding }
 interface CustomerProperty extends HTMLElement {
   originalPosition: string;
   domInserted: boolean;
-  comp: typeof Loading;
+  comp: any;
   loadingRoot: HTMLElement;
+  loading: any;
 }
 
 export default {
@@ -57,7 +58,7 @@ export default {
     };
 
     app.directive('loading', {
-      async beforeMount(el, binding) {
+      async beforeMount(el: CustomerProperty, binding: any) {
         const loading = createApp(Loading);
 
         el.loading = el;
@@ -65,12 +66,12 @@ export default {
         el.comp = loading.mount(el.loadingRoot);
         await toggleLoading(el, binding);
       },
-      async updated(el, binding) {
+      async updated(el: CustomerProperty, binding: any) {
         if (binding.oldValue !== binding.value) {
           await toggleLoading(el, binding);
         }
       },
-      async beforeUnmount(el) {
+      async beforeUnmount(el: CustomerProperty) {
         if (el.domInserted) {
           el.loading = el;
           removeDom(el);

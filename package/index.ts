@@ -1,6 +1,5 @@
-import { App } from 'vue';
 import './theme/theme.scss';
-
+import { App } from 'vue';
 import vPermission from './directive/v-permission';
 import vLoading from './directive/v-loading';
 
@@ -17,28 +16,30 @@ import VatsUploader from './uploader/index.vue';
 import { isMobile } from './utils/isMobile';
 import { debounced } from './utils/debounced';
 
-export default {
-  install(app: App) {
-    // 指令挂载
-    [vPermission, vLoading].forEach(directive => {
-      app.use(directive);
-    });
+const install = (app: App): void => {
+  // 指令挂载
+  [vPermission, vLoading].forEach(directive => {
+    app.use(directive);
+  });
 
-    // 组件挂载
-    [
-      VatsLoading,
-      VatsProvider,
-      VatsLayout,
-      VatsSelect,
-      VatsPage,
-      VatsTable,
-      VatsDrawer,
-      VatsButton,
-      VatsUploader,
-    ].forEach(component => {
-      app.component(component.name, component);
-    });
-  },
+  // 组件挂载
+  [
+    VatsLoading,
+    VatsProvider,
+    VatsLayout,
+    VatsSelect,
+    VatsPage,
+    VatsTable,
+    VatsDrawer,
+    VatsButton,
+    VatsUploader,
+  ].forEach(component => {
+    app.component(component.name, component);
+  });
+}
+
+export default {
+  install
 };
 
 export {

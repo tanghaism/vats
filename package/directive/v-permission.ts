@@ -1,7 +1,5 @@
-import { App } from 'vue';
-
 export default {
-  install: (app: App) => {
+  install: (app: any) => {
     // value 传入权限点或权限点数组
     // arg 表示传入的权限点必须全部存在或部分存在,默认部分存在
     app.config.globalProperties.$checkPermissions = (
@@ -30,7 +28,7 @@ export default {
     };
 
     app.directive('permission', {
-      mounted(el, binding) {
+      mounted(el: HTMLElement, binding: any) {
         const { value, arg = 'in' } = binding;
 
         // 如果无权限，直接移除元素

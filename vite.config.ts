@@ -2,13 +2,46 @@ import { defineConfig } from 'vite';
 import json from '@rollup/plugin-json';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
+import scss from 'rollup-plugin-scss';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
+import commonjs from 'rollup-plugin-commonjs';
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
+    json(),
+    {
+      ...typescript({
+        check: true,
+        tsconfig: resolve(__dirname, './tsconfig.json'), // your tsconfig.json path
+        tsconfigOverride: {
+          compilerOptions: {
+            sourceMap: false,
+            declaration: true,
+            declarationMap: false,
+          },
+          include: ['package/**/*'],
+          exclude: ['node_modules'],
+        },
+        abortOnError: true,
+      }),
+      enforce: 'pre',
+    },
+    getBabelOutputPlugin({
+      allowAllFormats: true,
+      exclude: 'node_modules/**', // 只编译源代码
+      extensions: ['.ts', '.vue', '.js'],
+      plugins: ['@babel/plugin-proposal-optional-chaining'],
+    }),
+    terser(),
+    nodeResolve(),
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    commonjs(),
   ],
   resolve: {
     alias: {
@@ -21,11 +54,11 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'package/index.ts'),
       name: 'vatsDefault',
-      formats: ['umd', 'es', 'cjs'],
+      formats: ['umd'],
       fileName: 'index',
     },
     outDir: 'dist',
-    emptyOutDir: false,
+    emptyOutDir: true,
     rollupOptions: {
       external: [
         'vue',
