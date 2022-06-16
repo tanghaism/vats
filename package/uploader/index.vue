@@ -197,7 +197,7 @@ interface IProps extends IEmptyProps, ICropProps {
   // 图片最大高度
   maxHeight: number;
   // 上传方法
-  upload: (item: IPreviewItem) => Promise<unknown>;
+  upload: (item: IPreviewItem) => Promise<IPreviewItem>;
 }
 
 const props = withDefaults(defineProps<IProps>(), {
@@ -546,9 +546,10 @@ const handleUpload = async () => {
     }
     try {
       localUploadList.value[i].uploadLoading = true;
-      await upload.value({
+      const newItem = await upload.value({
         ...toRaw(localUploadList.value[i]),
       });
+      localUploadList.value.splice(i, 1, newItem);
     } catch (e) {
       message.error(getLocaleText('uploadError'));
       localUploadList.value[i].uploadLoading = false;
