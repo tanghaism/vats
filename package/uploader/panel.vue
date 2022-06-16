@@ -66,7 +66,7 @@ import {
 import VatsUploadEmpty from './empty.vue';
 import VatsUploaderItem from './item.vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
-import {IPreviewItem, ICropProps, IEmptyProps, IFileType} from './index.d';
+import { IPreviewItem, ICropProps, IEmptyProps, IFileType } from './index.d';
 import Cropper from 'cropperjs';
 import { fileToBlob, getImageSize } from './utils';
 
@@ -257,7 +257,13 @@ const handleCrop = (item: IPreviewItem, index: number) => {
   initCrop();
 };
 
-defineExpose([toPrev, toNext]);
+defineExpose({
+  toPrev,
+  toNext,
+  setCurrent,
+  initCrop,
+  confirmCrop
+});
 </script>
 
 <style lang="scss">

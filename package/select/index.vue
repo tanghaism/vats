@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import VatsLoading from '../loading/index.vue';
 
 export default defineComponent({
   name: 'VatsSelect',
@@ -26,6 +25,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import { defineProps, toRefs } from 'vue';
+import VatsLoading from '../loading/index.vue';
 
 interface IProps {
   loading?: boolean;

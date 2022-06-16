@@ -326,7 +326,7 @@ const handleChange = async (e: DragEvent, fromAction: 'drop' | '' = '') => {
     extType.value &&
     fileList.some((file: File) => {
       const fileNameArray = file.name.split('.');
-      return !extType.value.includes(fileNameArray[fileNameArray.length - 1] as IFileExt);
+      return !(extType.value.includes(fileNameArray[fileNameArray.length - 1] as IFileExt));
     })
   ) {
     const errorMsg = vatsLang.message.uploaderError0;

@@ -12,8 +12,8 @@
   "peerDependencies": {
     "ant-design-vue": "^3.1.1",
     "cropperjs": "^1.5.12",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.14"
+    "vue": "^3",
+    "vue-router": "^4"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",
@@ -46,9 +46,6 @@
   },
   "dependencies": {
     "ant-design-vue": "^3.1.1",
-    "cropperjs": "^1.5.12",
-    "vats": "ssh://git@github.com:tanghaism/vats.git",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "cropperjs": "^1.5.12"
   }
 }
