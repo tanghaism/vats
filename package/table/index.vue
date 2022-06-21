@@ -46,8 +46,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  loading: false,
-  scroll: () => ({ x: 1460 }),
+  loading: false
 });
 
 const { loading, scroll, styleClass } = toRefs(props);

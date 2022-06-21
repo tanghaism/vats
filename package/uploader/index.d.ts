@@ -22,13 +22,13 @@ export type IFileExt = 'jpg' | 'png' | 'webp' | 'jpeg' | 'gif' | 'tif' | 'tiff';
 export type IFileType = 'image/gif' | 'image/jpeg' | 'image/png' | 'image/tiff' | 'image/webp';
 
 export interface IPreviewItem {
-  file: File;
+  file?: File;
   name: string;
   url: string;
-  originUrl: string;
-  width: number;
-  height: number;
-  size: number;
+  originUrl?: string;
+  width?: number;
+  height?: number;
+  size?: number;
   uploadSuccess: boolean;
   uploadFail: boolean;
   uploadLoading: boolean;

@@ -22,9 +22,9 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  locale: () => ({
+  locale: {
     locale: 'zh-cn',
-  }),
+  },
 });
 
 const { locale } = toRefs(props);

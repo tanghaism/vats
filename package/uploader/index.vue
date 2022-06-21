@@ -167,7 +167,14 @@ import {
 } from 'vue';
 import Panel from './panel.vue';
 import { useActionType, canvasToFile } from './utils';
-import { IPreviewItem, IFileExt, IValidateError, IEmptyProps, ICropProps, IFileType} from './index.d';
+import {
+  IPreviewItem,
+  IFileExt,
+  IValidateError,
+  IEmptyProps,
+  ICropProps,
+  IFileType,
+} from './index.d';
 import { message, Modal } from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { getText } from '../locale';
@@ -326,7 +333,7 @@ const handleChange = async (e: DragEvent, fromAction: 'drop' | '' = '') => {
     extType.value &&
     fileList.some((file: File) => {
       const fileNameArray = file.name.split('.');
-      return !(extType.value.includes(fileNameArray[fileNameArray.length - 1] as IFileExt));
+      return !extType.value.includes(fileNameArray[fileNameArray.length - 1] as IFileExt);
     })
   ) {
     const errorMsg = vatsLang.message.uploaderError0;
@@ -549,7 +556,7 @@ const handleUpload = async () => {
       const newItem = await upload.value({
         ...toRaw(localUploadList.value[i]),
       });
-      localUploadList.value.splice(i, 1, newItem);
+      localUploadList.value.splice(i, 1, { ...newItem, uploadLoading: false, uploadSuccess: true });
     } catch (e) {
       message.error(getLocaleText('uploadError'));
       localUploadList.value[i].uploadLoading = false;
