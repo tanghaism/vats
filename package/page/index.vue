@@ -47,6 +47,7 @@ import {
   getCurrentInstance,
   ComponentInternalInstance,
   defineEmits,
+  withDefaults,
 } from 'vue';
 import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from 'vue-router';
 
@@ -65,7 +66,10 @@ interface IProps {
   hasPermission?: boolean;
 }
 
-const props = defineProps<IProps>();
+const props = withDefaults(defineProps<IProps>(), {
+  showPageHeader: true,
+  hasPermission: false,
+});
 
 const emit = defineEmits(['init']);
 
@@ -96,11 +100,11 @@ if (
 const breadcrumbRoutes = computed(() => {
   return (
     breadcrumb?.value ||
-    route.meta.breadcrumb ||
+    route.meta?.breadcrumb ||
     route.matched.slice(1).map((_route: RouteLocationMatched) => {
       return {
         path: _route.path,
-        breadcrumbName: _route.meta.title,
+        breadcrumbName: _route.meta?.title,
       };
     })
   );
